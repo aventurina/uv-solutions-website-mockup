@@ -1,0 +1,767 @@
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #333;
+    }
+
+    /* NAVBAR */
+
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #0f2a44;
+        z-index: 999;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 40px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        color: rgb(197, 201, 202);
+        text-decoration: none;
+        font-size: 14px;
+        padding-bottom: 4px;
+        transition: 0.2s;
+    }
+
+    /* hover effect */
+    nav a:hover {
+        color: #ff6b35;
+    }
+
+    /* ACTIVE menu item */
+    nav a.active {
+        color: #ff6b35;
+        border-bottom: 2px solid #ff6b35;
+    }
+
+
+
+    .menu {
+        display: none;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+        width: 100%;
+        max-width: 100%;
+        /* override max-width from section */
+        margin: 0;
+        /* remove auto margin */
+        height: 90vh;
+        padding: 0;
+        /* optional, can adjust padding inside */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        background: linear-gradient(120deg, rgba(30, 58, 95, 0.7), rgba(15, 42, 68, 0.7)),
+            url('applab-main-semi-transparent.jpg') center/cover no-repeat;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+        margin: 20px;
+        margin-top: 40px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        margin-left: 20%;
+        margin-right: 20%;
+        line-height: 1.8;
+    }
+
+    .hero button {
+        padding: 14px 32px;
+        background: #ff6b35;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 25px;
+    }
+
+    /* SECTIONS */
+
+    section {
+        padding: 50px 30px;
+        max-width: 1200px;
+        margin: auto;
+        scroll-margin-top: 100px;
+        min-height: 80vh;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    /* About Section */
+    #about {
+        padding: 90px 20px;
+        text-align: left;
+    }
+
+    #about h2 {
+        margin-bottom: 50px;
+    }
+
+    .about-text {
+        max-width: 700px;
+        /* limits width for readability */
+        margin: 0 auto;
+        /* centers text */
+    }
+
+    .about-text p {
+        margin-bottom: 30px;
+        /* space between paragraphs */
+        line-height: 1.2;
+        /* increases line spacing for wrapped text */
+        font-size: 16px;
+        /* optional, improves readability */
+        color: #333;
+    }
+
+
+    /* GRID */
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    /* CARDS */
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+        transition: .3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    /* PRODUCT SHOWCASE */
+
+    .product img {
+        width: 100%;
+        border-radius: 6px;
+    }
+
+    /* TESTIMONIAL */
+
+    .testimonial {
+        text-align: center;
+        max-width: 700px;
+        margin: auto;
+        font-style: italic;
+    }
+
+    /* CONTACT */
+    .complete-form {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background: #0f2a44;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* FOOTER */
+
+    footer {
+        background: #0f2a44;
+        color: white;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .logo a {
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    /* DROPDOWN */
+
+    .dropdown {
+        position: relative;
+    }
+
+    /* arrow */
+
+    .arrow {
+        font-size: 10px;
+        margin-left: 4px;
+    }
+
+    /* dropdown menu */
+
+    .dropdown-menu {
+        position: absolute;
+        top: 35px;
+        left: 0;
+        background: #0f2a44;
+        list-style: none;
+        padding: 10px 0;
+        margin: 0;
+        min-width: 190px;
+        border-radius: 4px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+
+        display: block;
+        /* ensure normal block layout */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.25s ease;
+    }
+
+    /* menu items */
+
+    .dropdown-menu li {
+        display: block;
+        width: 100%;
+        padding: 8px 20px;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        width: 100%;
+    }
+
+    /* hover effect */
+
+    .dropdown-menu a:hover {
+        color: #ff6b35;
+    }
+
+    /* show dropdown */
+
+    .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .section-text {
+        font-size: 26px;
+    }
+
+    .warranty-text {
+        font-size: 18px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px) {
+
+        nav ul {
+            display: none;
+            flex-direction: column;
+            background: #0f2a44;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 200px;
+            padding: 20px;
+        }
+
+        nav ul.show {
+            display: flex;
+        }
+
+        .menu {
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin: 30px 20px;
+        }
+
+    }
+
+    .dropdown-menu.show-dropdown {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+</style>
+
+<body id="top">
+    <header>
+
+        <nav>
+
+            <div class="logo"><a href="#top">UV SOLUTIONS, LLC.</a></div>
+
+            <div class="menu" onclick="toggleMenu()">☰</div>
+
+            <ul id="navMenu">
+
+                <li><a href="#about">About Us</a></li>
+
+                <li><a href="#products">Our Products</a></li>
+                <li class="dropdown">
+                    <a href="#terms_conditions" class="dropdown-toggle">
+                        Customer Service <span class="arrow">▾</span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="#terms_conditions">Terms and Conditions</a></li>
+                        <li><a href="#warranty_policy">Warranty & Policy</a></li>
+                        <li><a href="#shipping_terms">Shipping Terms</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact Us</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <section class="hero">
+
+        <div>
+
+            <h1>Your UV Equipment Systems & Solutions Provider</h1>
+
+            <p>UV Solutions is a major supplier of ultraviolet light curing equipment and systems and single
+                part ultraviolet light curing adhesives to the electronics, medical, optical, printed circuit board and
+                general manufacturing industries.</p>
+
+            <p>Want to learn more about our UV curing systems? Contact us today to speak with a specialist. We’ll help
+                you
+                find the right solution for your application, answer any technical questions, and guide you through the
+                best
+                options for performance, efficiency, and integration.</p>
+
+            <button>Get Started</button>
+
+        </div>
+
+    </section>
+
+    <section id="about">
+        <h2>About Our Company</h2>
+
+        <div class="about-text">
+            <p>
+                At UV Solutions, LLC, we specialize in advanced UV curing solutions that drive innovation, efficiency,
+                and
+                performance across industries. With years of experience at the intersection of materials science and
+                engineering, we deliver high-performance UV curing systems tailored to meet the precise needs of
+                manufacturers,
+                printers, and production specialists worldwide.
+            </p>
+
+            <p>
+                Founded on a passion for precision and innovation, UV Solutions, LLC was established to bridge the gap
+                between
+                evolving industrial needs and cutting-edge curing technologies. From our early beginnings to our current
+                operations, we’ve grown by listening to our clients, adapting quickly, and engineering solutions that
+                perform
+                consistently under pressure.
+            </p>
+
+            <p>
+                Our product line includes UV LED curing systems, spot and flood curing units, conveyor-based systems,
+                and
+                custom-engineered setups for specialized applications. Whether you're in the automotive sector,
+                electronics,
+                medical device production, printing, or woodworking, our equipment is designed to enhance throughput,
+                reduce
+                downtime, and ensure consistent, quality results.
+            </p>
+
+            <p>
+                What truly sets us apart is our customer-first philosophy. We believe that a strong relationship with
+                our
+                clients begins with understanding their challenges. That’s why we work closely with every partner to
+                deliver
+                personalized service, technical support, and post-sale training to ensure smooth integration and
+                long-term
+                success.
+            </p>
+
+            <p>
+                Sustainability is a key part of our mission. Our UV LED systems are engineered for energy efficiency,
+                lower
+                emissions, and minimal waste—helping manufacturers meet environmental standards without sacrificing
+                productivity. As more industries prioritize eco-friendly production, our solutions are built to align
+                with
+                those
+                goals.
+            </p>
+
+            <p>
+                Our team is made up of engineers, researchers, and industry experts who are passionate about pushing the
+                boundaries of what UV technology can do. From R&D to implementation, we are constantly evolving our
+                systems
+                to
+                meet the highest standards in performance and reliability.
+            </p>
+
+            <p>
+                We’re proud to be more than just a supplier—we’re a solutions partner. When you choose UV Solutions,
+                LLC,
+                you're
+                investing in a team committed to your growth, innovation, and long-term success. Join us in shaping the
+                future
+                of curing technology.
+            </p>
+        </div>
+    </section>
+
+
+    <section id="products">
+
+        <h2>UV Curing Equipments</h2>
+
+        <h3>Spot System</h3>
+        <div class="grid">
+
+            <div class="card">
+                <div class="icon"><img src="multi-pole-uv-led-l.jpg"></div>
+
+                <h3>Multi-Pole LED UV Curing System 72004</h3>
+                <p>The Multi-Pole LED UV Curing System emits a consistent and repeatable 2.5 W/cm² @ 365nm at each pole.
+                    Unlike lamp technology there is no lamp or liquid light guide degradation or UV intensity variables
+                    throughout the individual poles. The UV light emitting poles fit easily into any XY motion system or
+                    similar automated production fixtures and can be controlled via footswitch or computerized PLC. The
+                    lack of liquid light guides and replacement lamps brings to the forefront of UV technology a zero
+                    level “cost of ownership”!</p>
+            </div>
+
+            <div class="card">
+                <div class="icon"><img src="singlepole_small.png" width="200px"></div>
+                <h3>Single-Pole LED UV Curing System 72005</h3>
+                <p>The Single Pole LED UV Curing System is a small, space saving system with the same form, function,
+                    and features of the Multi-Pole with a single LED output. Similar to the Multi-Pole unit the single
+                    pole fits easily into automated production systems and can be controlled via footswitch or PLC. The
+                    economy and ease of use of the SinglePole system are an excellent choice for the design of low to
+                    high volume automated production systems or for bench assembly.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon"><img src="led-200-small.jpg"></div>
+                <h3>LED-200 UV Portable Spot System 81172</h3>
+                <p>The LED-200 UV Curing System produces an output of 2.5 W/cm². This compact, hand held unit operates
+                    from a battery and is completely portable. An ergonomically positioned trigger switch allows
+                    comfortable operation while its compact size allows bonding difficult areas to reach. A
+                    microprocessor provides accurate control of timing functions and an LCD display shows operational
+                    status. This light, easy-to-use, advanced design is an excellent approach to solving bonding
+                    problems in manufacturing, field service repair and research and development.</p>
+            </div>
+
+        </div>
+
+        <br>
+        <h3>Flood System</h3>
+        <div class="grid">
+
+            <div class="card">
+                <div class="icon"><img src="bw_200_100.jpg"></div>
+                <h3>Bondwand UV Flood System 81002</h3>
+                <p>The hand-held or bench top mountable Bondwand employs a built-in, variable exposure timer of one,
+                    two, and three minute intervals as well as continuous and is an ideal equipment choice for research
+                    and low volume production applications. The Bondwand delivers 10mW/cm² of controlled ultraviolet
+                    energy at a peak wavelength of 350nm or 450nm.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon"><img src="ec-4001_small.jpg"></div>
+                <h3>Electro-Cure 4001 UV Flood System 81189</h3>
+                <p>The ELC-4001 flood curing system generates greater than 125 mW/cm² of UV energy at a peak wavelength
+                    of 290nm, 365nm or 440nm. Its versatile modular design answers industries needs for increased
+                    productivity, lower energy costs and an end to pollution emissions. Whether housed in the optional
+                    height adjustable curing frame or integrated into an automated manufacturing process its compact
+                    design offers a simple solution to high volume production. Lamp Contains Mercury. Manage in
+                    accordance with Disposal Laws. See www.lamprecycle.org or call 203-743-4059.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon"><img src="ELC-4001 Curing Frame -1.jpg"></div>
+                <h3>EC-4001 Optional Curing Frame 82039</h3>
+                <p>The curing frame allows the EC-4001 UV Curing System to be used for lab R&D, process development
+                    and
+                    low volume manufacturing.</p>
+            </div>
+
+
+
+        </div>
+
+        <h3></h3>
+        <div class="grid">
+            <div class="card">
+                <div class="icon"><img src="ELC-4001 Curing Frame -1.jpg"></div>
+                <h3>Electro-Cure 500 UV Flood Curing Chamber 81432</h3>
+                <p>The EC-500 UV Curing System is a completely contained, operator safe, chambered light exposure
+                    system. The system is available at 350nm 450nm or black light at 30 mW/cm². The EC-500 system
+                    features a digital countdown programmable timer, power down mode, and an audible end signal. The
+                    system also features a clear rotating turntable and clear shelf enclosed in a highly reflective
+                    exposure chamber that maximizes completely full exposure..</p>
+            </div>
+
+            <div class="card">
+                <div class="icon"><img src="ec-500_smal.jpg"></div>
+                <h3>FluoroTek UV Black Light Inspection System 81485</h3>
+                <p>Similar to the Bodwand in design the hand-held FluoroTek inspection lamp uses a black light to
+                    detect
+                    fluoresces in adhesives and laminates used for bonding and conformal coating. To assure complete
+                    coverage of conformal coatings on boards, catheters or any bond area before curing simply expose
+                    the
+                    area with the black light.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon"></div>
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <section id="adhesives">
+
+        <h2>UV Curing Adhesives</h2>
+
+        <div class="grid">
+
+            <div class="card product">
+                <img src="collage-1.jpg">
+                <h3>Ultraviolet Curing Equipment Systems</h3>
+            </div>
+
+            <div class="card product">
+                <img src="multi-pole-uv-led-l.jpg">
+                <h3>LED UV Curing Equipment Systems</h3>
+            </div>
+
+            <div class="card product">
+                <img src="adhesives.jpg">
+                <h3>Ultraviolet Adhesives</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="terms_conditions">
+        <h2>Terms and Conditions</h2>
+
+        <div class="warranty-text">
+            <p>Net 30 days available for existing customers with credit - must be approved
+
+                Credit Card
+                Wire Transfer
+                All credit that is approved is at the discresion of UV Solutions, LLC.
+            </p>
+        </div>
+    </section>
+
+    <section id="warranty_policy">
+        <h2>Warranty & Policy</h2>
+
+        <div class="warranty-text">
+            <h4>Return Policy – Warrantied Products
+            </h4>
+            <p>Products covered under warranty (within one year from the original purchase date) will be repaired at no
+                cost to the customer. This warranty excludes any damage or repair needs resulting from misuse,
+                unauthorized modifications, or customer-inflicted damage to the equipment.</p>
+
+
+
+            <h4>Return Policy – Non-Warrantied Products</h4>
+
+            <p>For products no longer under warranty, a non-refundable evaluation fee plus shipping will be applied.
+                After inspection, UV Solutions, LLC will provide a repair estimate. Should the customer approve the
+                repair, the evaluation fee will be credited toward the final repair cost. Alternatively, if the customer
+                opts to purchase a replacement unit, the evaluation fee will be applied to the cost of that new
+                equipment.
+
+                If the customer decides against both repair and replacement, the evaluation fee will not be refunded.
+                Please note that custom-built products are non-returnable. Items returned within 30 days of purchase are
+                subject to a 20% restocking fee.</p>
+
+
+
+            <h4>Important Shipping Note:</h4>
+
+            <p>
+                UV Solutions, LLC will not accept any product returns without a valid Return Merchandise Authorization
+                (RMA). Items received without an RMA will be refused and returned to the sender. To obtain an RMA,
+                please use the form found under the "Contact" section on our website.</p>
+
+
+
+            <h4>Warranty Information</h4>
+            <p>
+                For details regarding product warranties, please reach out to UV Solutions, LLC through the form
+                available under the "Contact" page.</p>
+            </p>
+        </div>
+    </section>
+
+    <section id="shipping_terms">
+
+        <h2>Shipping Terms</h2>
+
+        <div class="warranty-text">
+            <p>Customers are responsible for all shipping charges. </p>
+
+            <p>Shipping arrangements are determined according to the
+                customer’s chosen carrier and preference. </p>
+
+            <p>Costs may either be billed directly to the customer’s shipping
+                account or added to the final sales invoice issued by UV Solutions, LLC.</p>
+            </p>
+        </div>
+
+    </section>
+
+
+    <section id="contact">
+
+        <h2>Contact Us</h2>
+
+        <div class="complete-form">
+            Please complete the following form for all requests including: RFQ, product literature,
+            adhesives data
+            sheets,
+            and MSDS information and/or application and material being bonded:
+        </div>
+
+        <form class="contact-form">
+            <input type="text" placeholder="Name">
+
+            <input type="email" placeholder="Email Address">
+            <input type="text" placeholder="Address">
+            <input type="text" placeholder="City, State Zip">
+            <input type="text" placeholder="Phone">
+
+            <textarea rows="7" placeholder="Message"></textarea>
+
+            <button>Send Message</button>
+
+        </form>
+
+    </section>
+
+
+    <footer>
+
+        <p>© 2026 BusinessSite</p>
+
+    </footer>
+
+
+    <script>
+
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("show");
+        }
+
+        /* simple testimonial slider */
+
+        const testimonials = [
+            "Working with this team dramatically improved our productivity.",
+            "Our company doubled revenue after implementing their platform.",
+            "Excellent service and outstanding support."
+        ];
+
+        let i = 0;
+
+        setInterval(() => {
+            i = (i + 1) % testimonials.length;
+            document.getElementById("testimonial").innerText = testimonials[i];
+        }, 4000);
+
+        const navLinks = document.querySelectorAll("#navMenu a");
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", function () {
+
+                navLinks.forEach(l => l.classList.remove("active"));
+
+                this.classList.add("active");
+
+            });
+        });
+
+        /* mobile dropdown toggle */
+
+        const dropdownToggle = document.querySelector(".dropdown-toggle");
+
+        dropdownToggle.addEventListener("click", function (e) {
+
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const menu = this.nextElementSibling;
+                menu.classList.toggle("show-dropdown");
+            }
+
+        });
+    </script>
